@@ -1,0 +1,128 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --accent: #4f46e5;
+  --accent-light: #6366f1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --accent: #818cf8;
+  --accent-light: #a5b4fc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Trending strip gradient */
+.trending-gradient {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+}
+
+.dark .trending-gradient {
+  background: linear-gradient(135deg, #3730a3 0%, #5b21b6 50%, #be185d 100%);
+}
+
+/* Category accent colors */
+.category-accent-0 {
+  border-left-color: #ef4444;
+}
+
+.category-accent-1 {
+  border-left-color: #f59e0b;
+}
+
+.category-accent-2 {
+  border-left-color: #10b981;
+}
+
+.category-accent-3 {
+  border-left-color: #3b82f6;
+}
+
+.category-accent-4 {
+  border-left-color: #8b5cf6;
+}
+
+.category-accent-5 {
+  border-left-color: #ec4899;
+}
+
+.category-accent-6 {
+  border-left-color: #14b8a6;
+}
+
+.category-accent-7 {
+  border-left-color: #f97316;
+}
+
+/* Hide scrollbar for trending strip */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Article content text */
+.article-content {
+  color: black !important;
+}
+
+.article-content p,
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6,
+.article-content li,
+.article-content strong,
+.article-content span {
+  color: black !important;
+}
+
+.dark .article-content,
+.dark .article-content p,
+.dark .article-content h1,
+.dark .article-content h2,
+.dark .article-content h3,
+.dark .article-content h4,
+.dark .article-content h5,
+.dark .article-content h6,
+.dark .article-content li,
+.dark .article-content strong,
+.dark .article-content span {
+  color: white !important;
+}
+
+/* Share button hover animations */
+.share-btn {
+  transition: all 0.2s ease;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(ADMIN)
+  bio       String?
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  articles  Article[]
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  slug      String    @unique
+  articles  Article[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Tag {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  slug      String    @unique
+  articles  Article[]
+}
+
+model Article {
+  id             String        @id @default(uuid())
+  title          String
+  slug           String        @unique
+  content        String
+  image          String?
+  status         ArticleStatus @default(DRAFT)
+  isBreaking     Boolean       @default(false)
+  showFeaturedImage Boolean    @default(true)
+  seoTitle       String?
+  seoDescription String?
+  
+  categoryId     String
+  category       Category      @relation(fields: [categoryId], references: [id])
+  
+  authorId       String
+  author         User          @relation(fields: [authorId], references: [id])
+  
+  tags           Tag[]
+
+  publishedAt    DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([slug])
+  @@index([categoryId])
+  @@index([authorId])
+  @@index([isBreaking])
+}
