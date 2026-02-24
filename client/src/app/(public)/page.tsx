@@ -1,7 +1,10 @@
+export const dynamic = 'force-dynamic';
+
 import Link from 'next/link';
 import NewsCard from '@/components/NewsCard';
 import BreakingNewsTicker from '@/components/BreakingNewsTicker';
 import TrendingStrip from '@/components/TrendingStrip';
+import DateDisplay from '@/components/DateDisplay';
 
 
 async function getData() {
@@ -49,15 +52,7 @@ export default async function Home() {
       <BreakingNewsTicker />
       
       <div className="flex justify-end mb-2">
-        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-          {new Date().toLocaleDateString('te-IN', { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric',
-            timeZone: 'Asia/Kolkata'
-          })}
-        </p>
+        <DateDisplay />
       </div>
       
       {/* ── Hero Section ── */}
