@@ -37,7 +37,7 @@ export default function ArticleForm({ initialData, isDid }: Props) {
     queryKey: ['categories'],
     queryFn: async () => {
       const res = await api.get('/categories');
-      return res.data;
+      return Array.isArray(res.data) ? res.data : [];
     },
   });
 
@@ -128,7 +128,7 @@ export default function ArticleForm({ initialData, isDid }: Props) {
             className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border dark:bg-gray-700 dark:text-white"
           >
             <option value="">Select Category</option>
-            {categories.map((cat) => (
+            {Array.isArray(categories) && categories.map((cat) => (
               <option key={cat.id} value={cat.id}>{cat.name}</option>
             ))}
           </select>
