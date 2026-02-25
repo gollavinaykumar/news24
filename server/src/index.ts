@@ -14,7 +14,25 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    const allowed = [
+      process.env.CLIENT_URL,
+      'http://localhost:3000',
+    ].filter(Boolean);
+
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+
+    // Allow any Vercel preview URL for this project
+    if (
+      allowed.includes(origin) ||
+      origin.match(/^https:\/\/news24.*\.vercel\.app$/)
+    ) {
+      return callback(null, origin);
+    }
+
+    callback(new Error('Not allowed by CORS'));
+  },
   credentials: true
 }));
 app.use(express.json());
