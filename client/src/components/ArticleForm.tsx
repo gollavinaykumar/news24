@@ -100,7 +100,7 @@ export default function ArticleForm({ initialData, isDid }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white dark:bg-gray-800 p-4 md:p-6 rounded-lg shadow">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="col-span-2">
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
